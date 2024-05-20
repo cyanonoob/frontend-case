@@ -14,15 +14,15 @@ const config = withTV({
       },
       fontFamily: {
         sans: ['var(--font-fira)', 'sans-serif'],
-        titles: ['var(--font-barlow)', 'sans-serif']
+        titles: ['var(--font-barlow)', 'sans-serif'],
       },
       fontSize: {
-        xl: '1.3125rem'
+        xl: '1.3125rem',
       },
       colors: {
         primary: '#371172',
         lightblue: '#EFEFF8',
-      }
+      },
     },
   },
   plugins: [],

@@ -1,32 +1,33 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import { Barlow, Fira_Sans } from 'next/font/google';
+import Image from 'next/image';
 
-import { config as faConfig } from '@fortawesome/fontawesome-svg-core'
-import '@fortawesome/fontawesome-svg-core/styles.css'
+import { config as faConfig } from '@fortawesome/fontawesome-svg-core';
 
+import '@fortawesome/fontawesome-svg-core/styles.css';
 import './globals.scss';
 import './layout.scss';
+
+import Link from 'next/link';
+
 import Container from '@/components/Container';
 import Header from '@/components/Header';
 import Navigation from '@/components/Navigation';
 import NavToggleIcon from '@/components/NavToggleIcon';
-import Link from 'next/link';
 
 const barlow = Barlow({
   weight: ['700'],
   display: 'swap',
   variable: '--font-barlow',
-})
+});
 
 const fira = Fira_Sans({
   weight: ['400', '500', '600'],
   display: 'swap',
-  variable: '--font-fira'
-})
+  variable: '--font-fira',
+});
 
-faConfig.autoAddCss = false
-
+faConfig.autoAddCss = false;
 
 export const metadata: Metadata = {
   title: '2Digits Development Agency',
@@ -35,12 +36,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang='en'>    
-      <body className={`flex flex-col min-h-full h-full; ${barlow.variable} ${fira.variable} bg-gradient-radial from-0% to-[99.95%] from-[#020365] to-[#01041F]`}>
+    <html lang="en">
+      <body
+        className={`h-full; flex min-h-full flex-col ${barlow.variable} ${fira.variable} bg-gradient-radial from-[#020365] from-0% to-[#01041F] to-[99.95%]`}>
         <NavToggleIcon />
-        <header className='py-6 sm:hidden'>
+        <header className="py-6 sm:hidden">
           <Container>
-            <Link href='/'><img src='/logo-tagline.svg' alt='2Digits Digital Agency' className='h-8 w-auto' /></Link>
+            <Link href="/">
+              <img src="/logo-tagline.svg" alt="2Digits Digital Agency" className="h-8 w-auto" />
+            </Link>
           </Container>
         </header>
         <Header />
@@ -48,8 +52,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         {children}
 
         <footer>
-          <Container className='text-white text-xs flex gap-12 py-8 pb-24 sm:pb-8'>
-            <Navigation slug='footer' className='w-full justify-between gap-4 sm:justify-start sm:gap-8' />
+          <Container className="flex gap-12 py-8 pb-24 text-xs text-white sm:pb-8">
+            <Navigation
+              slug="footer"
+              className="w-full justify-between gap-4 sm:justify-start sm:gap-8"
+            />
           </Container>
         </footer>
       </body>

@@ -1,9 +1,12 @@
-"use client";
+'use client';
+
 import React, { useCallback } from 'react';
+
 import Link from 'next/link';
-import { useSearchParams, usePathname } from 'next/navigation';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { usePathname, useSearchParams } from 'next/navigation';
+
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface BlogPaginationProps {
   totalPages: number;
@@ -20,7 +23,7 @@ const BlogPagination: React.FC<BlogPaginationProps> = ({ totalPages }) => {
       params.set(name, value);
       return params.toString();
     },
-    [searchParams]
+    [searchParams],
   );
 
   const pageStyle = 'px-4 py-3 rounded';
@@ -28,30 +31,35 @@ const BlogPagination: React.FC<BlogPaginationProps> = ({ totalPages }) => {
   const inactiveStyle = 'bg-white';
 
   const renderPageLink = (page: number) => (
-    <Link key={page} className={`${pageStyle} ${page === currentPage ? activeStyle : inactiveStyle}`} href={
-      `${pathname}?${createQueryString('page', page.toString())}`
-    }>
+    <Link
+      key={page}
+      className={`${pageStyle} ${page === currentPage ? activeStyle : inactiveStyle}`}
+      href={`${pathname}?${createQueryString('page', page.toString())}`}>
       {page}
     </Link>
   );
 
   const renderFiller = (key: string) => (
-    <div key={key} className={pageStyle}>...</div>
+    <div key={key} className={pageStyle}>
+      ...
+    </div>
   );
 
   const renderNavLink = (type: 'previous' | 'next') => {
     const page = type === 'previous' ? currentPage - 1 : currentPage + 1;
     const isDisabled = type === 'previous' ? currentPage === 1 : currentPage === totalPages;
-    const text = type === 'previous' ? (<FontAwesomeIcon icon={faChevronLeft} />) : <FontAwesomeIcon icon={faChevronRight} />;
+    const text =
+      type === 'previous' ? (
+        <FontAwesomeIcon icon={faChevronLeft} />
+      ) : (
+        <FontAwesomeIcon icon={faChevronRight} />
+      );
     return (
       <Link
         key={type}
-        className={`${pageStyle} ${isDisabled ? 'text-gray-400 cursor-not-allowed' : ''}`}
-        href={
-          !isDisabled ? `${pathname}?${createQueryString('page', page.toString())}` : '#'
-        }
-        aria-disabled={isDisabled}
-      >
+        className={`${pageStyle} ${isDisabled ? 'cursor-not-allowed text-gray-400' : ''}`}
+        href={!isDisabled ? `${pathname}?${createQueryString('page', page.toString())}` : '#'}
+        aria-disabled={isDisabled}>
         {text}
       </Link>
     );
@@ -84,7 +92,7 @@ const BlogPagination: React.FC<BlogPaginationProps> = ({ totalPages }) => {
   pages.push(renderPageLink(totalPages));
 
   return (
-    <div className='flex gap-4 mx-auto justify-center items-center col-span-3 flex-wrap'>
+    <div className="col-span-3 mx-auto flex flex-wrap items-center justify-center gap-4">
       {renderNavLink('previous')}
       {pages}
       {renderNavLink('next')}

@@ -1,4 +1,4 @@
 .container {
-  @apply sm:max-w-full md:max-w-screen-sm lg:max-w-screen-md xl:max-w-screen-lg 2xl:max-w-screen-xl mx-auto;
+  @apply mx-auto sm:max-w-full md:max-w-screen-sm lg:max-w-screen-md xl:max-w-screen-lg 2xl:max-w-screen-xl;
   @apply px-4;
 }

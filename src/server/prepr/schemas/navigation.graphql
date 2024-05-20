@@ -1,12 +1,12 @@
-query Navigation($slug:String!) {
-  Navigation(slug:$slug) {
+query Navigation($slug: String!) {
+  Navigation(slug: $slug) {
     _id
     items {
       _id
       _slug
       link_to_page {
-				_slug
-			}
+        _slug
+      }
       title
     }
   }

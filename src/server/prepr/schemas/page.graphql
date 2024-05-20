@@ -1,11 +1,11 @@
-query Page($slug:String!) {
+query Page($slug: String!) {
   Page(slug: $slug) {
     _slug
     title
     html
     page_header {
       image {
-        url(width:1440)
+        url(width: 1440)
         description
         caption
       }

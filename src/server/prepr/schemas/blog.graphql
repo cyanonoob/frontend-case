@@ -5,7 +5,7 @@ query Blog($slug: String!) {
       body
       slug
     }
-    content {            
+    content {
       ... on Text {
         _id
         html
@@ -19,34 +19,34 @@ query Blog($slug: String!) {
     _id
     banner_image {
       _id
-      url(width:1440)
+      url(width: 1440)
       description
       caption
     }
-		related_blogs {
-			_id
-			title
-			_slug
-			content {
-				... on Text {
-					_id
-					html
-					body
-					text
-					format
-				}
-			}
+    related_blogs {
+      _id
+      title
+      _slug
+      content {
+        ... on Text {
+          _id
+          html
+          body
+          text
+          format
+        }
+      }
       banner_image {
         _id
-        url(width:400)
+        url(width: 400)
         description
         caption
       }
-			categories {
-				_id
-				body
-				slug
-			}
-		}
-  }  
+      categories {
+        _id
+        body
+        slug
+      }
+    }
+  }
 }

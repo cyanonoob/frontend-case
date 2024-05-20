@@ -7,7 +7,7 @@ query Blogs($limit: Int, $skip: Int, $where: BlogWhereInput) {
         body
         slug
       }
-      content {               
+      content {
         ... on Text {
           _id
           html
