@@ -1,0 +1,25 @@
+header {
+  .navContainer {    
+    @apply flex justify-between py-6 text-white text-lg font-bold font-titles;
+    @apply flex-col sm:flex-row;
+    @apply h-screen sm:h-auto;
+    @apply fixed top-0 -right-full w-full bg-gradient-radial from-0% to-[99.95%] from-[#020365] to-[#01041F] z-40;
+    @apply transition-all duration-200;
+    @screen sm {
+      @apply relative top-auto right-auto bg-none;
+    }
+    img.logo {
+      @apply h-8 w-auto;
+    }
+    .headerNav {
+      @apply gap-2;
+      @apply flex-col mt-8 justify-start items-start h-full;
+      @screen sm {
+        @apply flex-row mt-0 justify-end items-center h-auto gap-8;
+      }
+    }
+    input {
+      @apply hidden;
+    }
+  }  
+}

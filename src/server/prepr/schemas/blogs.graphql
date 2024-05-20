@@ -1,0 +1,30 @@
+query Blogs($limit: Int, $skip: Int, $where: BlogWhereInput) {
+  Blogs(limit: $limit, skip: $skip, where: $where) {
+    total
+    items {
+      categories {
+        _id
+        body
+        slug
+      }
+      content {               
+        ... on Text {
+          _id
+          html
+          body
+          text
+          format
+        }
+      }
+      title
+      _slug
+      _id
+      banner_image {
+        _id
+        url(width: 400)
+        description
+        caption
+      }
+    }
+  }
+}

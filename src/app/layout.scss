@@ -1,0 +1,13 @@
+.navToggle {
+  @apply sm:hidden;
+  @apply fixed left-4 bottom-4 z-50;
+
+  .bars,
+  .xmark {
+    @apply bg-primary rounded-full z-50 text-white p-2;
+    @apply aspect-square h-6 w-6 justify-center items-center cursor-pointer hover:bg-black;
+  }
+  &.expanded ~ header .navContainer {
+    @apply right-0;
+  }  
+}
