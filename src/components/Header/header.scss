@@ -3,7 +3,7 @@ header {
     @apply flex justify-between py-6 font-titles text-lg font-bold text-white;
     @apply flex-col sm:flex-row;
     @apply h-screen sm:h-auto;
-    @apply fixed -right-full top-0 z-40 w-full bg-gradient-radial from-[#020365] from-0% to-[#01041F] to-[99.95%];
+    @apply fixed -right-full top-0 z-40 w-full bg-gradient-radial from-[#020365] to-[#01041F];
     @apply transition-all duration-200;
     @screen sm {
       @apply relative right-auto top-auto bg-none;

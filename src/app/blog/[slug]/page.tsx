@@ -9,35 +9,43 @@ import { PreprSdk } from '@/server/prepr';
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const { Blog } = await PreprSdk.Blog({ slug: params.slug });
+  const category = Blog?.categories[0];
   return (
     <main>
       {!!Blog?.banner_image.url && (
         <Hero
           imageUrl={Blog.banner_image.url}
-          imageAlt={Blog.banner_image?.description || Blog.title}
+          imageAlt={Blog.banner_image.description || Blog.title}
           narrow={true}
         />
       )}
+
       <div className="bg-white py-20">
         <Container className="content flex flex-col">
-          <Link
-            href={`/blog?topic=${Blog?.categories[0]?.slug}`}
-            class="mb-4 mr-auto self-start bg-lightblue px-4 py-3 hover:bg-primary hover:text-white">
-            {Blog?.categories[0]?.body}
-          </Link>
+          { category && category.slug && category.body && 
+            <Link
+              href={`/blog?topic=${category.slug}`}
+              className="mb-4 mr-auto self-start bg-lightblue px-4 py-3 hover:bg-primary hover:text-white">
+              {category.body}
+            </Link>
+          }
+
           <h1>{Blog?.title}</h1>
-          {Blog?.content?.map((element) => parse(element.html))}
+
+          {Blog?.content?.map((element) => parse(element?.__typename === 'Text' ? (element.html || '') : ''))}
         </Container>
       </div>
-      {!!Blog?.related_blogs?.length && (
+
+      {!!Blog?.related_blogs.length && (
         <div className="bg-lightblue py-20">
-          {Blog?.related_blogs?.length}
-          {Blog?.related_blogs?.map((item) => {
-            const textContent = item.content?.find((item) => !!item?.text); // gets the first content entry that has a usable text property
-            const text =
-              typeof textContent?.text === 'string'
-                ? textContent?.text.split(/\s+/).slice(0, 20).join(' ')
-                : ''; // gets the text
+          {Blog.related_blogs.length}
+
+          {Blog.related_blogs.map((item) => {
+            const textContent = item.content?.find((item) => item?.__typename === 'Text');
+            const text:string =
+              textContent?.__typename === 'Text'
+                ? (textContent.text || '').split(/\s+/).slice(0, 20).join(' ')
+                : '';
 
             return (
               <Teaser

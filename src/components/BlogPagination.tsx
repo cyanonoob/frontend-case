@@ -15,11 +15,11 @@ interface BlogPaginationProps {
 const BlogPagination: React.FC<BlogPaginationProps> = ({ totalPages }) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const currentPage = parseInt(searchParams.get('page') || '1', 10);
+  const currentPage = Number.parseInt(searchParams.get('page') || '1', 10);
 
   const createQueryString = useCallback(
     (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams?.toString());
+      const params = new URLSearchParams(searchParams.toString());
       params.set(name, value);
       return params.toString();
     },
@@ -58,7 +58,7 @@ const BlogPagination: React.FC<BlogPaginationProps> = ({ totalPages }) => {
       <Link
         key={type}
         className={`${pageStyle} ${isDisabled ? 'cursor-not-allowed text-gray-400' : ''}`}
-        href={!isDisabled ? `${pathname}?${createQueryString('page', page.toString())}` : '#'}
+        href={isDisabled ? '#' : `${pathname}?${createQueryString('page', page.toString())}`}
         aria-disabled={isDisabled}>
         {text}
       </Link>
@@ -94,7 +94,9 @@ const BlogPagination: React.FC<BlogPaginationProps> = ({ totalPages }) => {
   return (
     <div className="col-span-3 mx-auto flex flex-wrap items-center justify-center gap-4">
       {renderNavLink('previous')}
+
       {pages}
+
       {renderNavLink('next')}
     </div>
   );

@@ -20,10 +20,11 @@ export default async function Home() {
       )}
 
       <div className="bg-white py-20">
-        {!!Page?.html?.length && <Container className="">{parse(Page.html)}</Container>}
+        {!!Page?.html.length && <Container className="">{parse(Page.html)}</Container>}
 
         <Container className="mt-20">
           <h2 className="mb-8">De nieuwste blogs</h2>
+
           <RecentBlogs />
         </Container>
       </div>

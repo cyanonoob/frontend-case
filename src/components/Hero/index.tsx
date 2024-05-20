@@ -11,7 +11,7 @@ interface HeroProps {
   text?: string | undefined;
   imageUrl: string | undefined;
   imageAlt?: string | undefined;
-  narrow: Boolean;
+  narrow?: boolean | undefined;
 }
 
 const Hero: React.FC<HeroProps> = ({ title, text, imageAlt, imageUrl, narrow }) => {
@@ -22,7 +22,8 @@ const Hero: React.FC<HeroProps> = ({ title, text, imageAlt, imageUrl, narrow }) 
 
         {!!text && <div className="text">{parse(text)}</div>}
       </Container>
-      {!!imageUrl && <Image src={imageUrl} alt={imageAlt || title} width={1200} height={300} />}
+
+      {!!imageUrl && <Image src={imageUrl} alt={imageAlt || title || ''} width={1200} height={300} />}
     </div>
   );
 };

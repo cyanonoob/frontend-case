@@ -27,7 +27,7 @@ const Teaser: React.FC<TeaserProps> = ({ href, title, text, topic, imageAlt, ima
           />
         )}
         {!!topic && (
-          <span class="absolute bottom-2 left-2 rounded bg-lightblue px-4 py-2 uppercase">
+          <span className="absolute bottom-2 left-2 rounded bg-lightblue px-4 py-2 uppercase">
             {topic}
           </span>
         )}

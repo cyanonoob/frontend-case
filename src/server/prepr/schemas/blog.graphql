@@ -6,6 +6,7 @@ query Blog($slug: String!) {
       slug
     }
     content {
+      __typename
       ... on Text {
         _id
         html
@@ -28,6 +29,7 @@ query Blog($slug: String!) {
       title
       _slug
       content {
+        __typename
         ... on Text {
           _id
           html

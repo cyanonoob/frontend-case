@@ -17,9 +17,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
           imageAlt={Page.page_header.image.description}
         />
       )}
-      {Page?.html?.length > 0 && (
+
+      {!!Page?.html.length && (
         <div className="bg-white py-20">
-          <Container className="content">{parse(Page.html)}</Container>
+          <Container className="content">{parse(Page.html || '')}</Container>
         </div>
       )}
     </main>

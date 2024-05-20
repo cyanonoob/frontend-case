@@ -45,9 +45,11 @@ const BlogSearch: React.FC = () => {
         placeholder="Search"
         className="flex-1 px-4 py-3"
       />
+
       <Link className="button primary" href={pathname + '?' + createQueryString('q', query)}>
         Search
       </Link>
+
       {query && (
         <button className="button secondary" onClick={handleClear}>
           Clear

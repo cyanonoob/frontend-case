@@ -8,7 +8,8 @@ query Blogs($limit: Int, $skip: Int, $where: BlogWhereInput) {
         slug
       }
       content {
-        ... on Text {
+        __typename
+        ... on Text {          
           _id
           html
           body

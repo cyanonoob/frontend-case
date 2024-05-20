@@ -1,22 +1,18 @@
 import Teaser from '@/components/Teaser';
 import { PreprSdk } from '@/server/prepr';
 
-interface RecentBlogsProps {
-  slug?: string | undefined;
-}
-
-const RecentBlogs: React.FC<RecentBlogsProps> = async ({ slug }) => {
+const RecentBlogs: React.FC = async () => {
   const { Blogs } = await PreprSdk.Blogs({ limit: 3, skip: 0 });
 
-  if (Blogs?.items?.length) {
+  if (Blogs?.items.length) {
     return (
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
-        {Blogs?.items.map((item) => {
-          const textContent = item.content?.find((item) => !!item?.text); // gets the first content entry that has a usable text property
+        {Blogs.items.map((item) => {
+          const textContent = item.content?.find((item) => item?.__typename === 'Text');
           const text =
-            typeof textContent?.text === 'string'
-              ? textContent?.text.split(/\s+/).slice(0, 20).join(' ')
-              : ''; // gets the text
+            textContent?.__typename === 'Text'
+              ? (textContent.text || '').split(/\s+/).slice(0, 20).join(' ')
+              : '';
 
           return (
             <Teaser

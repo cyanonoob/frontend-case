@@ -7,18 +7,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const NavToggleIcon: React.FC = () => {
   const [expanded, setExpanded] = useState<boolean>(false);
-  const icon = !expanded ? (
-    <FontAwesomeIcon icon={faBars} className="bars" />
-  ) : (
+  const icon = expanded ? (
     <FontAwesomeIcon icon={faXmark} className="xmark" />
+  ) : (
+    <FontAwesomeIcon icon={faBars} className="bars" />
   );
 
   useEffect(() => {
-    document.querySelectorAll('nav a').forEach((link) => {
+    for (const link of document.querySelectorAll('nav a')) {
       link.addEventListener('click', () => {
         setExpanded(false);
       });
-    });
+    }
   }, []);
   return (
     <div

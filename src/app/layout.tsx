@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { Barlow, Fira_Sans } from 'next/font/google';
-import Image from 'next/image';
 
 import { config as faConfig } from '@fortawesome/fontawesome-svg-core';
 
@@ -9,6 +8,7 @@ import './globals.scss';
 import './layout.scss';
 
 import Link from 'next/link';
+import Image from 'next/image';
 
 import Container from '@/components/Container';
 import Header from '@/components/Header';
@@ -16,12 +16,14 @@ import Navigation from '@/components/Navigation';
 import NavToggleIcon from '@/components/NavToggleIcon';
 
 const barlow = Barlow({
+  subsets: ['latin'],
   weight: ['700'],
   display: 'swap',
   variable: '--font-barlow',
 });
 
 const fira = Fira_Sans({
+  subsets: ['latin'],
   weight: ['400', '500', '600'],
   display: 'swap',
   variable: '--font-fira',
@@ -38,15 +40,17 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body
-        className={`h-full; flex min-h-full flex-col ${barlow.variable} ${fira.variable} bg-gradient-radial from-[#020365] from-0% to-[#01041F] to-[99.95%]`}>
+        className={`h-full flex min-h-full flex-col ${barlow.variable} ${fira.variable} bg-gradient-radial from-[#020365] to-[#01041F]`}>
         <NavToggleIcon />
+
         <header className="py-6 sm:hidden">
           <Container>
             <Link href="/">
-              <img src="/logo-tagline.svg" alt="2Digits Digital Agency" className="h-8 w-auto" />
+              <Image src="/logo-tagline.svg" alt="2Digits Digital Agency" className="h-8 w-auto" width={208} height={32} />
             </Link>
           </Container>
         </header>
+
         <Header />
 
         {children}
